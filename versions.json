@@ -15,7 +15,8 @@
         "arm32v7",
         "arm64v8",
         "ppc64le",
-        "s390x"
+        "s390x",
+        "riscv64"
       ],
       "alpine3.17": [
         "amd64",
@@ -23,7 +24,8 @@
         "arm32v7",
         "arm64v8",
         "ppc64le",
-        "s390x"
+        "s390x",
+        "riscv64"
       ],
       "bullseye": [
         "amd64",
@@ -54,14 +56,16 @@
         "arm32v7",
         "arm64v8",
         "ppc64le",
-        "s390x"
+        "s390x",
+        "riscv64"
       ],
       "kinetic": [
         "amd64",
         "arm32v7",
         "arm64v8",
         "ppc64le",
-        "s390x"
+        "s390x",
+        "riscv64"
       ]
     }
   },
@@ -120,14 +124,16 @@
         "arm32v7",
         "arm64v8",
         "ppc64le",
-        "s390x"
+        "s390x",
+        "riscv64"
       ],
       "kinetic": [
         "amd64",
         "arm32v7",
         "arm64v8",
         "ppc64le",
-        "s390x"
+        "s390x",
+        "riscv64"
       ]
     }
   },
@@ -186,14 +192,16 @@
         "arm32v7",
         "arm64v8",
         "ppc64le",
-        "s390x"
+        "s390x",
+        "riscv64"
       ],
       "kinetic": [
         "amd64",
         "arm32v7",
         "arm64v8",
         "ppc64le",
-        "s390x"
+        "s390x",
+        "riscv64"
       ]
     }
   },
@@ -252,14 +260,16 @@
         "arm32v7",
         "arm64v8",
         "ppc64le",
-        "s390x"
+        "s390x",
+        "riscv64"
       ],
       "kinetic": [
         "amd64",
         "arm32v7",
         "arm64v8",
         "ppc64le",
-        "s390x"
+        "s390x",
+        "riscv64"
       ]
     }
   }

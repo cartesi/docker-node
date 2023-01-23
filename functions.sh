@@ -38,6 +38,9 @@ function get_arch() {
     armv7l)
       arch="arm32v7"
       ;;
+    riscv64)
+      arch="riscv64"
+      ;;
     *)
       echo "$0 does not support architecture ${arch} ... aborting"
       exit 1

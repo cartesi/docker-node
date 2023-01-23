@@ -13,6 +13,7 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
     arm64) ARCH='arm64';; \
     armhf) ARCH='armv7l';; \
     i386) ARCH='x86';; \
+    riscv64) ARCH='riscv64';; \
     *) echo "unsupported architecture"; exit 1 ;; \
   esac \
   # gpg keys listed at https://github.com/nodejs/node#release-keys

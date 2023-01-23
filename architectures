@@ -6,3 +6,4 @@ arm64v8        alpine3.16,alpine3.17,bullseye,bullseye-slim,buster,buster-slim
 i386           alpine3.16,alpine3.17
 ppc64le        alpine3.16,alpine3.17,bullseye,bullseye-slim,buster,buster-slim
 s390x          alpine3.16,alpine3.17,bullseye,bullseye-slim,buster,buster-slim
+riscv64        alpine3.16,alpine3.17,jammy,kinetic
