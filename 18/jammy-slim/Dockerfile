@@ -35,13 +35,19 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
       gpg --batch --keyserver hkps://keys.openpgp.org --recv-keys "$key" || \
       gpg --batch --keyserver keyserver.ubuntu.com --recv-keys "$key" ; \
     done \
-    && curl -fsSLO --compressed "https://unofficial-builds.nodejs.org/download/release/v$NODE_VERSION/node-v$NODE_VERSION-linux-$ARCH.tar.xz" \
-    && curl -fsSLO --compressed "https://unofficial-builds.nodejs.org/download/release/v$NODE_VERSION/SHASUMS256.txt" \
+    && curl -fsSLO --compressed "https://github.com/cartesi/unofficial-builds/releases/download/fix%2Fbootlin-toolchain/node-v$NODE_VERSION-linux-$ARCH.tar.xz" \
+    && curl -fsSLO --compressed "https://github.com/cartesi/unofficial-builds/releases/download/fix%2Fbootlin-toolchain/SHASUMS256.txt" \
     && grep " node-v$NODE_VERSION-linux-$ARCH.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
     && tar -xJf "node-v$NODE_VERSION-linux-$ARCH.tar.xz" -C /usr/local --strip-components=1 --no-same-owner \
     && rm "node-v$NODE_VERSION-linux-$ARCH.tar.xz" SHASUMS256.txt \
     && apt-mark auto '.*' > /dev/null \
-    && apt-mark manual libc6 libgcc-s1 libstdc++6 libatomic1 \
+    && find /usr/local -type f -executable -exec ldd '{}' ';' \
+      | awk '/=>/ { print $1 }' \
+      | sort -u \
+      | xargs -r dpkg-query --search \
+      | cut -d: -f1 \
+      | sort -u \
+      | xargs -r apt-mark manual \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && ln -s /usr/local/bin/node /usr/local/bin/nodejs \
     # smoke tests
@@ -70,7 +76,13 @@ RUN set -ex \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \
   && apt-mark auto '.*' > /dev/null \
   && { [ -z "$savedAptMark" ] || apt-mark manual $savedAptMark > /dev/null; } \
-  && apt-mark manual libc6 libgcc-s1 libstdc++6 libatomic1 \
+  && find /usr/local -type f -executable -exec ldd '{}' ';' \
+    | awk '/=>/ { print $1 }' \
+    | sort -u \
+    | xargs -r dpkg-query --search \
+    | cut -d: -f1 \
+    | sort -u \
+    | xargs -r apt-mark manual \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   # smoke test
   && yarn --version
