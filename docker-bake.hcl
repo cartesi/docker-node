@@ -4,19 +4,19 @@ group "default" {
 }
 
 group "jammy" {
-  targets = ["v19-jammy", "v18-jammy", "v16-jammy"]
+  targets = ["v19-jammy", "v18-jammy"]
 }
 
 group "jammy-slim" {
-  targets = ["v19-jammy-slim", "v18-jammy-slim", "v16-jammy-slim"]
+  targets = ["v19-jammy-slim", "v18-jammy-slim"]
 }
 
 group "kinetic" {
-  targets = ["v19-kinetic", "v18-kinetic", "v16-kinetic"]
+  targets = ["v19-kinetic", "v18-kinetic"]
 }
 
 group "kinetic-slim" {
-  targets = ["v19-kinetic-slim", "v18-kinetic-slim", "v16-kinetic-slim"]
+  targets = ["v19-kinetic-slim", "v18-kinetic-slim"]
 }
 
 group "all" {
@@ -25,18 +25,6 @@ group "all" {
 
 target "riscv" {
   platforms = ["linux/riscv64"]
-}
-
-target "v16-jammy" {
-  inherits = ["riscv"]
-  context  = "16/jammy/"
-  tags     = ["docker.io/cartesi/node:16.19.1-jammy", "docker.io/cartesi/node:16.19-jammy", "docker.io/cartesi/node:16-jammy"]
-}
-
-target "v16-jammy-slim" {
-  inherits = ["riscv"]
-  context  = "16/jammy-slim/"
-  tags     = ["docker.io/cartesi/node:16.19.1-jammy-slim", "docker.io/cartesi/node:16.19-jammy-slim", "docker.io/cartesi/node:16-jammy-slim"]
 }
 
 target "v18-jammy" {
@@ -61,18 +49,6 @@ target "v19-jammy-slim" {
   inherits = ["riscv"]
   context  = "19/jammy-slim/"
   tags     = ["docker.io/cartesi/node:19.8.1-jammy-slim", "docker.io/cartesi/node:19.8-jammy-slim", "docker.io/cartesi/node:19-jammy-slim", "docker.io/cartesi/node:jammy-slim"]
-}
-
-target "v16-kinetic" {
-  inherits = ["riscv"]
-  context  = "16/kinetic/"
-  tags     = ["docker.io/cartesi/node:16.19.1-kinetic", "docker.io/cartesi/node:16.19-kinetic", "docker.io/cartesi/node:16-kinetic"]
-}
-
-target "v16-kinetic-slim" {
-  inherits = ["riscv"]
-  context  = "16/kinetic-slim/"
-  tags     = ["docker.io/cartesi/node:16.19.1-kinetic-slim", "docker.io/cartesi/node:16.19-kinetic-slim", "docker.io/cartesi/node:16-kinetic-slim"]
 }
 
 target "v18-kinetic" {
