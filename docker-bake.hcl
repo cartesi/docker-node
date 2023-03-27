@@ -4,35 +4,27 @@ group "default" {
 }
 
 group "jammy" {
-  targets = ["v19-jammy", "v18-jammy", "v16-jammy", "v14-jammy"]
+  targets = ["v19-jammy", "v18-jammy", "v16-jammy"]
 }
 
 group "jammy-slim" {
-  targets = ["v19-jammy-slim", "v18-jammy-slim", "v16-jammy-slim", "v14-jammy-slim"]
+  targets = ["v19-jammy-slim", "v18-jammy-slim", "v16-jammy-slim"]
 }
 
 group "kinetic" {
-  targets = ["v19-kinetic", "v18-kinetic", "v16-kinetic", "v14-kinetic"]
+  targets = ["v19-kinetic", "v18-kinetic", "v16-kinetic"]
 }
 
 group "kinetic-slim" {
-  targets = ["v19-kinetic-slim", "v18-kinetic-slim", "v16-kinetic-slim", "v14-kinetic-slim"]
+  targets = ["v19-kinetic-slim", "v18-kinetic-slim", "v16-kinetic-slim"]
+}
+
+group "all" {
+  targets = ["jammy", "jammy-slim", "kinetic", "kinetic-slim"]
 }
 
 target "riscv" {
   platforms = ["linux/riscv64"]
-}
-
-target "v14-jammy" {
-  inherits = ["riscv"]
-  context  = "14/jammy/"
-  tags     = ["docker.io/cartesi/node:14.21.3-jammy", "docker.io/cartesi/node:14.21-jammy", "docker.io/cartesi/node:14-jammy"]
-}
-
-target "v14-jammy-slim" {
-  inherits = ["riscv"]
-  context  = "14/jammy-slim/"
-  tags     = ["docker.io/cartesi/node:14.21.3-jammy-slim", "docker.io/cartesi/node:14.21-jammy-slim", "docker.io/cartesi/node:14-jammy-slim"]
 }
 
 target "v16-jammy" {
@@ -69,18 +61,6 @@ target "v19-jammy-slim" {
   inherits = ["riscv"]
   context  = "19/jammy-slim/"
   tags     = ["docker.io/cartesi/node:19.8.1-jammy-slim", "docker.io/cartesi/node:19.8-jammy-slim", "docker.io/cartesi/node:19-jammy-slim", "docker.io/cartesi/node:jammy-slim"]
-}
-
-target "v14-kinetic" {
-  inherits = ["riscv"]
-  context  = "14/kinetic/"
-  tags     = ["docker.io/cartesi/node:14.21.3-kinetic", "docker.io/cartesi/node:14.21-kinetic", "docker.io/cartesi/node:14-kinetic"]
-}
-
-target "v14-kinetic-slim" {
-  inherits = ["riscv"]
-  context  = "14/kinetic-slim/"
-  tags     = ["docker.io/cartesi/node:14.21.3-kinetic-slim", "docker.io/cartesi/node:14.21-kinetic-slim", "docker.io/cartesi/node:14-kinetic-slim"]
 }
 
 target "v16-kinetic" {
