@@ -38,6 +38,9 @@ function get_arch() {
     armv7l)
       arch="arm32v7"
       ;;
+    riscv64)
+      arch="riscv64"
+      ;;
     *)
       echo "$0 does not support architecture ${arch:-unknown} ... aborting"
       exit 1
@@ -191,6 +194,34 @@ function is_debian_slim() {
 
   IFS=' ' read -ra debianVersions <<< "$(get_config "./" "debian_versions")"
   for d in "${debianVersions[@]}"; do
+    if [ "${d}-slim" = "${variant}" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+function is_ubuntu() {
+  local variant
+  variant=$1
+  shift
+
+  IFS=' ' read -ra ubuntuVersions <<< "$(get_config "./" "ubuntu_versions")"
+  for d in "${ubuntuVersions[@]}"; do
+    if [ "${d}" = "${variant}" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+function is_ubuntu_slim() {
+  local variant
+  variant=$1
+  shift
+
+  IFS=' ' read -ra ubuntuVersions <<< "$(get_config "./" "ubuntu_versions")"
+  for d in "${ubuntuVersions[@]}"; do
     if [ "${d}-slim" = "${variant}" ]; then
       return 0
     fi

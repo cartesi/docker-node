@@ -25,6 +25,10 @@ The official Node.js docker image, made with love by the node community.
   - [`node:alpine`](#nodealpine)
   - [`node:bullseye`](#nodebullseye)
   - [`node:bookworm`](#nodebookworm)
+  - [`node:jammy`](#nodejammy)
+  - [`node:jammy-slim`](#nodejammyslim)
+  - [`node:noble`](#nodenoble)
+  - [`node:noble-slim`](#nodenobleslim)
   - [`node:slim`](#nodeslim)
 - [License](#license)
 - [Supported Docker versions](#supported-docker-versions)
@@ -215,6 +219,34 @@ This image is based on version 11 of
 This image is based on version 12 of
 [Debian](http://debian.org), available in
 [the `debian` official image](https://hub.docker.com/_/debian).
+
+### `node:jammy`
+
+This image is based on version 22.04 of
+[Ubuntu](http://ubuntu.com), available in
+[the `ubuntu` official image](https://hub.docker.com/_/ubuntu).
+
+### `node:jammy-slim`
+
+This image does not contain the common packages contained in the default tag and
+only contains the minimal packages needed to run `node`. Unless you are working
+in an environment where *only* the Node.js image will be deployed and you have
+space constraints, we highly recommend using the default image of this
+repository.
+
+### `node:noble`
+
+This image is based on version 24.04 of
+[Ubuntu](http://ubuntu.com), available in
+[the `ubuntu` official image](https://hub.docker.com/_/ubuntu).
+
+### `node:noble-slim`
+
+This image does not contain the common packages contained in the default tag and
+only contains the minimal packages needed to run `node`. Unless you are working
+in an environment where *only* the Node.js image will be deployed and you have
+space constraints, we highly recommend using the default image of this
+repository.
 
 ### `node:slim`
 

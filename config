@@ -2,3 +2,4 @@ baseuri     https://nodejs.org/dist
 default_variant bookworm
 alpine_version  3.19
 debian_versions bookworm bullseye
+ubuntu_versions jammy noble
