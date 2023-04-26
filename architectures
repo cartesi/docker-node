@@ -6,3 +6,4 @@ arm64v8        alpine3.19,alpine3.20,bookworm,bookworm-slim,bullseye,bullseye-sl
 i386           alpine3.19,alpine3.20
 ppc64le        alpine3.19,alpine3.20,bookworm,bookworm-slim,bullseye,bullseye-slim
 s390x          alpine3.19,alpine3.20,bookworm,bookworm-slim,bullseye,bullseye-slim
+riscv64        jammy,jammy-slim
