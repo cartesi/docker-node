@@ -68,6 +68,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install riscv64 buildx builder
+        run: docker run --privileged --rm tonistiigi/binfmt:riscv
+
       - name: Build image
         uses: docker/build-push-action@v6
         with:
