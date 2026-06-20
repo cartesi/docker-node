@@ -1,4 +1,4 @@
-FROM riscv64/ubuntu:noble-slim
+FROM riscv64/ubuntu:noble
 
 RUN groupadd --gid 1001 node \
   && useradd --uid 1001 --gid node --shell /bin/bash --create-home node
