@@ -7,6 +7,7 @@
     "codename": "",
     "alpine-default": "alpine3.24",
     "debian-default": "trixie",
+    "ubuntu-default": "noble",
     "variants": {
       "alpine3.23": [
         "amd64",
@@ -37,6 +38,12 @@
         "arm64v8",
         "ppc64le",
         "s390x"
+      ],
+      "noble": [
+        "riscv64"
+      ],
+      "noble-slim": [
+        "riscv64"
       ]
     }
   },
@@ -48,6 +55,7 @@
     "codename": "krypton",
     "alpine-default": "alpine3.24",
     "debian-default": "bookworm",
+    "ubuntu-default": "noble",
     "variants": {
       "alpine3.23": [
         "amd64",
@@ -80,6 +88,12 @@
         "arm64v8",
         "ppc64le",
         "s390x"
+      ],
+      "noble": [
+        "riscv64"
+      ],
+      "noble-slim": [
+        "riscv64"
       ]
     }
   },
@@ -91,6 +105,7 @@
     "codename": "jod",
     "alpine-default": "alpine3.24",
     "debian-default": "bookworm",
+    "ubuntu-default": "noble",
     "variants": {
       "alpine3.23": [
         "amd64",
@@ -129,6 +144,12 @@
         "arm64v8",
         "ppc64le",
         "s390x"
+      ],
+      "noble": [
+        "riscv64"
+      ],
+      "noble-slim": [
+        "riscv64"
       ]
     }
   }

@@ -226,6 +226,59 @@ function update_node_version() {
       # shellcheck disable=SC1003
       deb_arch+='*) echo "unsupported architecture"; exit 1 ;; \\'
       sed -Ei -e "s/\"\\$\{DEB_ARCH\[@\]\}\"/${deb_arch}/" "${dockerfile}-tmp"
+    elif is_ubuntu "${variant}"; then
+      sed -Ei -e "s/(buildpack-deps:)name/\\1${variant}/" "${dockerfile}-tmp"
+      deb_arch=''
+      local -a arches
+      arches=$(jq -r ".\"${version}\".variants.\"${variant}\" | @sh" "versions.json")
+      if [[ "${arches[0]}" == *"amd64"* ]]; then
+        deb_arch+='amd64) ARCH='"'"'x64'"'"';; \\\n    '
+      fi
+      if [[ "${arches[0]}" == *"ppc64le"* ]]; then
+        deb_arch+='ppc64el) ARCH='"'"'ppc64le'"'"';; \\\n    '
+      fi
+      if [[ "${arches[0]}" == *"s390x"* ]]; then
+        deb_arch+='s390x) ARCH='"'"'s390x'"'"';; \\\n    '
+      fi
+      if [[ "${arches[0]}" == *"arm64v8"* ]]; then
+        deb_arch+='arm64) ARCH='"'"'arm64'"'"';; \\\n    '
+      fi
+      if [[ "${arches[0]}" == *"arm32v7"* ]]; then
+        deb_arch+='armhf) ARCH='"'"'armv7l'"'"';; \\\n    '
+      fi
+      if [[ "${arches[0]}" == *"riscv64"* ]]; then
+        deb_arch+='riscv64) ARCH='"'"'riscv64'"'"';; \\\n    '
+      fi
+      # shellcheck disable=SC1003
+      deb_arch+='*) echo "unsupported architecture"; exit 1 ;; \\'
+      sed -Ei -e "s/\"\\$\{DEB_ARCH\[@\]\}\"/${deb_arch}/" "${dockerfile}-tmp"
+    elif is_ubuntu_slim "${variant}"; then
+      # TODO: fix replacement by using only noble and not noble-slim
+      sed -Ei -e "s/(ubuntu:)name/\\1${variant}/" "${dockerfile}-tmp"
+      deb_arch=''
+      local -a arches
+      arches=$(jq -r ".\"${version}\".variants.\"${variant}\" | @sh" "versions.json")
+      if [[ "${arches[0]}" == *"amd64"* ]]; then
+        deb_arch+='amd64) ARCH='"'"'x64'"'"' OPENSSL_ARCH='"'"'linux-x86_64'"'"';; \\\n      '
+      fi
+      if [[ "${arches[0]}" == *"ppc64le"* ]]; then
+        deb_arch+='ppc64el) ARCH='"'"'ppc64le'"'"' OPENSSL_ARCH='"'"'linux-ppc64le'"'"';; \\\n      '
+      fi
+      if [[ "${arches[0]}" == *"s390x"* ]]; then
+        deb_arch+='s390x) ARCH='"'"'s390x'"'"' OPENSSL_ARCH='"'"'linux*-s390x'"'"';; \\\n      '
+      fi
+      if [[ "${arches[0]}" == *"arm64v8"* ]]; then
+        deb_arch+='arm64) ARCH='"'"'arm64'"'"' OPENSSL_ARCH='"'"'linux-aarch64'"'"';; \\\n      '
+      fi
+      if [[ "${arches[0]}" == *"arm32v7"* ]]; then
+        deb_arch+='armhf) ARCH='"'"'armv7l'"'"' OPENSSL_ARCH='"'"'linux-armv4'"'"';; \\\n      '
+      fi
+      if [[ "${arches[0]}" == *"riscv64"* ]]; then
+        deb_arch+='riscv64) ARCH='"'"'riscv64'"'"';; \\\n    '
+      fi
+      # shellcheck disable=SC1003
+      deb_arch+='*) echo "unsupported architecture"; exit 1 ;; \\'
+      sed -Ei -e "s/\"\\$\{DEB_ARCH\[@\]\}\"/${deb_arch}/" "${dockerfile}-tmp"
     fi
 
     # Strip out Yarn v1 from Node 26+ images https://github.com/nodejs/docker-node/issues/2407
@@ -290,6 +343,10 @@ for version in "${versions[@]}"; do
       template_file="${parentpath}/Dockerfile-debian.template"
     elif is_debian_slim "${variant}"; then
       template_file="${parentpath}/Dockerfile-slim.template"
+    elif is_ubuntu "${variant}"; then
+      template_file="${parentpath}/Dockerfile-ubuntu.template"
+    elif is_ubuntu_slim "${variant}"; then
+      template_file="${parentpath}/Dockerfile-ubuntu-slim.template"
     elif is_alpine "${variant}"; then
       template_file="${parentpath}/Dockerfile-alpine.template"
     fi

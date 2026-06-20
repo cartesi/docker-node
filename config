@@ -2,3 +2,4 @@ baseuri     https://nodejs.org/dist
 default_variant trixie
 alpine_version  3.23
 debian_versions bookworm bullseye trixie
+ubuntu_versions noble
